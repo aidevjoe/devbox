@@ -1,3 +1,4 @@
+import 'package:devbox/models/tool_category_type.dart';
 import 'package:devbox/utils/extensions/custom_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -17,10 +18,10 @@ class AppPage extends ConsumerWidget {
       children: [
         Column(
           children: [
-            const CategoryWidget(
-              title: 'Home',
-              path: HomeRoute.path,
-            ),
+            ...ToolCategoryType.values
+                .map((e) => e.getCategorys(context))
+                .map((e) => CategoryWidget(title: e.title, path: e.name))
+                .toList(),
             CategoryWidget(
               title: context.l10n.favorites,
               path: FavoriteRoute.path,
