@@ -1,5 +1,6 @@
-import 'package:devbox/utils/extensions/custom_extensions.dart';
 import 'package:flutter/material.dart';
+
+import '../../generated/locale_keys.g.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -11,6 +12,7 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.blue, child: Text(context.l10n.settings));
+    return Container(
+        color: Colors.blue, child: const Text(LocaleKeys.settings));
   }
 }

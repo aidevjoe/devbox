@@ -2,9 +2,10 @@ import 'package:devbox/ui/modules/formatters/json_formatter_page.dart';
 import 'package:devbox/ui/modules/formatters/sql_formatter_page.dart';
 import 'package:devbox/ui/modules/formatters/xml_formatter_page.dart';
 import 'package:devbox/ui/modules/generators/uuid_page.dart';
-import 'package:devbox/utils/extensions/custom_extensions.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../generated/locale_keys.g.dart';
 import '../ui/modules/converters/cron_parser_page.dart';
 import '../ui/modules/converters/json_yaml_converter_page.dart';
 import '../ui/modules/converters/number_base_converter_page.dart';
@@ -59,43 +60,42 @@ enum ToolType {
 }
 
 extension ToolTypeExtension on ToolType {
-  ToolItem getToolItem(BuildContext context) {
-    final l10n = context.l10n;
+  ToolItem get getToolItem {
     switch (this) {
       case ToolType.jsonYaml:
         return ToolItem(
-          name: 'jsonYaml',
+          name: '/jsonYaml',
           icon: Icons.format_align_left,
-          title: l10n.jsonYamlTitle,
-          subtitle: l10n.jsonYamlSubtitle,
-          description: l10n.jsonYamlDescription,
+          title: LocaleKeys.jsonYamlTitle.tr(),
+          subtitle: LocaleKeys.jsonYamlSubtitle.tr(),
+          description: LocaleKeys.jsonYamlDescription.tr(),
           page: const JsonYamlConverterPage(),
         );
       case ToolType.timestamp:
         return ToolItem(
-          name: 'timestamp',
+          name: '/timestamp',
           icon: Icons.access_time,
-          title: l10n.timestampTitle,
-          subtitle: l10n.timestampSubtitle,
-          description: l10n.timestampDescription,
+          title: LocaleKeys.timestampTitle.tr(),
+          subtitle: LocaleKeys.timestampSubtitle.tr(),
+          description: LocaleKeys.timestampDescription.tr(),
           page: const TimestampConverterPage(),
         );
       case ToolType.numberBase:
         return ToolItem(
-          name: 'numberBase',
+          name: '/numberBase',
           icon: Icons.format_list_numbered,
-          title: l10n.numberBaseTitle,
-          subtitle: l10n.numberBaseSubtitle,
-          description: l10n.numberBaseDescription,
+          title: LocaleKeys.numberBaseTitle.tr(),
+          subtitle: LocaleKeys.numberBaseSubtitle.tr(),
+          description: LocaleKeys.numberBaseDescription.tr(),
           page: const NumberBaseConverterPage(),
         );
       case ToolType.cronParser:
         return ToolItem(
-          name: 'cronParser',
+          name: '/cronParser',
           icon: Icons.schedule,
-          title: l10n.cronParserTitle,
-          subtitle: l10n.cronParserSubtitle,
-          description: l10n.cronParserDescription,
+          title: LocaleKeys.cronParserTitle.tr(),
+          subtitle: LocaleKeys.cronParserSubtitle.tr(),
+          description: LocaleKeys.cronParserDescription.tr(),
           page: const CronParserPage(),
         );
       // case ConverterType.encoderDecoder:
@@ -110,47 +110,47 @@ extension ToolTypeExtension on ToolType {
       //   );
       case ToolType.html:
         return ToolItem(
-          name: 'html',
+          name: '/html',
           icon: Icons.language,
-          title: l10n.htmlTitle,
-          subtitle: l10n.htmlSubtitle,
-          description: l10n.htmlDescription,
+          title: LocaleKeys.htmlTitle.tr(),
+          subtitle: LocaleKeys.htmlSubtitle.tr(),
+          description: LocaleKeys.htmlDescription.tr(),
           page: const HtmlFormatterPage(),
         );
       case ToolType.url:
         return ToolItem(
-          name: 'url',
+          name: '/url',
           icon: Icons.link,
-          title: l10n.urlTitle,
-          subtitle: l10n.urlSubtitle,
-          description: l10n.urlDescription,
+          title: LocaleKeys.urlTitle.tr(),
+          subtitle: LocaleKeys.urlSubtitle.tr(),
+          description: LocaleKeys.urlDescription.tr(),
           page: const UrlEncoderDecoderPage(),
         );
       case ToolType.base64TextImage:
         return ToolItem(
-          name: 'base64TextImage',
+          name: '/base64TextImage',
           icon: Icons.image,
-          title: l10n.base64TextImageTitle,
-          subtitle: l10n.base64TextImageSubtitle,
-          description: l10n.base64TextImageDescription,
+          title: LocaleKeys.base64TextImageTitle.tr(),
+          subtitle: LocaleKeys.base64TextImageSubtitle.tr(),
+          description: LocaleKeys.base64TextImageDescription.tr(),
           page: const Base64TextImagePage(),
         );
       case ToolType.gzip:
         return ToolItem(
-          name: 'gzip',
+          name: '/gzip',
           icon: Icons.compress,
-          title: l10n.gzipTitle,
-          subtitle: l10n.gzipSubtitle,
-          description: l10n.gzipDescription,
+          title: LocaleKeys.gzipTitle.tr(),
+          subtitle: LocaleKeys.gzipSubtitle.tr(),
+          description: LocaleKeys.gzipDescription.tr(),
           page: const GzipCompressionPage(),
         );
       case ToolType.jwtDecoder:
         return ToolItem(
-          name: 'jwtDecoder',
+          name: '/jwtDecoder',
           icon: Icons.fingerprint,
-          title: l10n.jwtDecoderTitle,
-          subtitle: l10n.jwtDecoderSubtitle,
-          description: l10n.jwtDecoderDescription,
+          title: LocaleKeys.jwtDecoderTitle.tr(),
+          subtitle: LocaleKeys.jwtDecoderSubtitle.tr(),
+          description: LocaleKeys.jwtDecoderDescription.tr(),
           page: const JWTDecoderPage(),
         );
       // case ConverterType.formatter:
@@ -165,29 +165,29 @@ extension ToolTypeExtension on ToolType {
       //   );
       case ToolType.json:
         return ToolItem(
-          name: 'json',
+          name: '/json',
           icon: Icons.format_indent_increase,
-          title: l10n.jsonTitle,
-          subtitle: l10n.jsonSubtitle,
-          description: l10n.jsonDescription,
+          title: LocaleKeys.jsonTitle.tr(),
+          subtitle: LocaleKeys.jsonSubtitle.tr(),
+          description: LocaleKeys.jsonDescription.tr(),
           page: const JSONFormatterPage(),
         );
       case ToolType.sql:
         return ToolItem(
-          name: 'sql',
+          name: '/sql',
           icon: Icons.table_chart,
-          title: l10n.sqlTitle,
-          subtitle: l10n.sqlSubtitle,
-          description: l10n.sqlDescription,
+          title: LocaleKeys.sqlTitle.tr(),
+          subtitle: LocaleKeys.sqlSubtitle.tr(),
+          description: LocaleKeys.sqlDescription.tr(),
           page: const SQLFormatterPage(),
         );
       case ToolType.xml:
         return ToolItem(
-          name: 'xml',
+          name: '/xml',
           icon: Icons.code,
-          title: l10n.xmlTitle,
-          subtitle: l10n.xmlSubtitle,
-          description: l10n.xmlDescription,
+          title: LocaleKeys.xmlTitle.tr(),
+          subtitle: LocaleKeys.xmlSubtitle.tr(),
+          description: LocaleKeys.xmlDescription.tr(),
           page: const XMLFormatterPage(),
         );
       // case ConverterType.generator:
@@ -202,38 +202,38 @@ extension ToolTypeExtension on ToolType {
       //   );
       case ToolType.hash:
         return ToolItem(
-          name: 'hash',
+          name: '/hash',
           icon: Icons.lock,
-          title: l10n.hashTitle,
-          subtitle: l10n.hashSubtitle,
-          description: l10n.hashDescription,
+          title: LocaleKeys.hashTitle.tr(),
+          subtitle: LocaleKeys.hashSubtitle.tr(),
+          description: LocaleKeys.hashDescription.tr(),
           page: const HashPage(),
         );
       case ToolType.uuid:
         return ToolItem(
-          name: 'uuid',
+          name: '/uuid',
           icon: Icons.fiber_manual_record,
-          title: l10n.uuidTitle,
-          subtitle: l10n.uuidSubtitle,
-          description: l10n.uuidDescription,
+          title: LocaleKeys.uuidTitle.tr(),
+          subtitle: LocaleKeys.uuidSubtitle.tr(),
+          description: LocaleKeys.uuidDescription.tr(),
           page: const UUIDPage(),
         );
       case ToolType.loremIpsum:
         return ToolItem(
-          name: 'loremIpsum',
+          name: '/loremIpsum',
           icon: Icons.text_fields,
-          title: l10n.loremIpsumTitle,
-          subtitle: l10n.loremIpsumSubtitle,
-          description: l10n.loremIpsumDescription,
+          title: LocaleKeys.loremIpsumTitle.tr(),
+          subtitle: LocaleKeys.loremIpsumSubtitle.tr(),
+          description: LocaleKeys.loremIpsumDescription.tr(),
           page: const LoremIpsumPage(),
         );
       case ToolType.checksum:
         return ToolItem(
-          name: 'checksum',
+          name: '/checksum',
           icon: Icons.check_circle_outline,
-          title: l10n.checksumTitle,
-          subtitle: l10n.checksumSubtitle,
-          description: l10n.checksumSubtitle,
+          title: LocaleKeys.checksumTitle.tr(),
+          subtitle: LocaleKeys.checksumSubtitle.tr(),
+          description: LocaleKeys.checksumSubtitle.tr(),
           page: const ChecksumPage(),
         );
       // case ConverterType.text:
@@ -248,56 +248,56 @@ extension ToolTypeExtension on ToolType {
       //   );
       case ToolType.escapeUnescape:
         return ToolItem(
-          name: 'escapeUnescape',
+          name: '/escapeUnescape',
           icon: Icons.format_quote,
-          title: l10n.escapeUnescapeTitle,
-          subtitle: l10n.escapeUnescapeSubtitle,
-          description: l10n.escapeUnescapeDescription,
+          title: LocaleKeys.escapeUnescapeTitle.tr(),
+          subtitle: LocaleKeys.escapeUnescapeSubtitle.tr(),
+          description: LocaleKeys.escapeUnescapeDescription.tr(),
           page: const EscapeUnescapePage(),
         );
       case ToolType.inspectorCaseConverter:
         return ToolItem(
-          name: 'inspectorCaseConverter',
+          name: '/inspectorCaseConverter',
           icon: Icons.help_outline,
-          title: l10n.inspectorCaseConverterTitle,
-          subtitle: l10n.inspectorCaseConverterSubtitle,
-          description: l10n.inspectorCaseConverterDescription,
+          title: LocaleKeys.inspectorCaseConverterTitle.tr(),
+          subtitle: LocaleKeys.inspectorCaseConverterSubtitle.tr(),
+          description: LocaleKeys.inspectorCaseConverterDescription.tr(),
           page: const InspectorCaseConverterPage(),
         );
       case ToolType.regexTester:
         return ToolItem(
-          name: 'regexTester',
+          name: '/regexTester',
           icon: Icons.search,
-          title: l10n.regexTesterTitle,
-          subtitle: l10n.regexTesterSubtitle,
-          description: l10n.regexTesterDescription,
+          title: LocaleKeys.regexTesterTitle.tr(),
+          subtitle: LocaleKeys.regexTesterSubtitle.tr(),
+          description: LocaleKeys.regexTesterDescription.tr(),
           page: const RegexTesterPage(),
         );
       case ToolType.textComparer:
         return ToolItem(
-          name: 'textComparer',
+          name: '/textComparer',
           icon: Icons.compare,
-          title: l10n.textComparerTitle,
-          subtitle: l10n.textComparerSubtitle,
-          description: l10n.textComparerDescription,
+          title: LocaleKeys.textComparerTitle.tr(),
+          subtitle: LocaleKeys.textComparerSubtitle.tr(),
+          description: LocaleKeys.textComparerDescription.tr(),
           page: const TextComparerPage(),
         );
       case ToolType.xmlValidator:
         return ToolItem(
-          name: 'xmlValidator',
+          name: '/xmlValidator',
           icon: Icons.check_circle_outline,
-          title: l10n.xmlValidatorTitle,
-          subtitle: l10n.xmlValidatorSubtitle,
-          description: l10n.xmlValidatorDescription,
+          title: LocaleKeys.xmlValidatorTitle.tr(),
+          subtitle: LocaleKeys.xmlValidatorSubtitle.tr(),
+          description: LocaleKeys.xmlValidatorDescription.tr(),
           page: const XMLValidatorPage(),
         );
       case ToolType.markdownPreview:
         return ToolItem(
-          name: 'markdownPreview',
+          name: '/markdownPreview',
           icon: Icons.abc,
-          title: l10n.markdownPreviewTitle,
-          subtitle: l10n.markdownPreviewSubtitle,
-          description: l10n.markdownPreviewDescription,
+          title: LocaleKeys.markdownPreviewTitle.tr(),
+          subtitle: LocaleKeys.markdownPreviewSubtitle.tr(),
+          description: LocaleKeys.markdownPreviewDescription.tr(),
           page: const MarkdownPreviewPage(),
         );
       // case ConverterType.graphic:
@@ -312,38 +312,38 @@ extension ToolTypeExtension on ToolType {
       //   );
       case ToolType.colorBlindnessSimulator:
         return ToolItem(
-          name: 'colorBlindnessSimulator',
+          name: '/colorBlindnessSimulator',
           icon: Icons.remove_red_eye,
-          title: l10n.colorBlindnessTitle,
-          subtitle: l10n.colorBlindnessSubtitle,
-          description: l10n.colorBlindnessDescription,
+          title: LocaleKeys.colorBlindnessTitle.tr(),
+          subtitle: LocaleKeys.colorBlindnessSubtitle.tr(),
+          description: LocaleKeys.colorBlindnessDescription.tr(),
           page: const ColorBlindnessSimulatorPage(),
         );
       case ToolType.colorPickerContrast:
         return ToolItem(
-          name: 'colorPickerContrast',
+          name: '/colorPickerContrast',
           icon: Icons.color_lens,
-          title: l10n.colorPickerTitle,
-          subtitle: l10n.colorPickerSubtitle,
-          description: l10n.colorPickerDescription,
+          title: LocaleKeys.colorPickerTitle.tr(),
+          subtitle: LocaleKeys.colorPickerSubtitle.tr(),
+          description: LocaleKeys.colorPickerDescription.tr(),
           page: const ColorPickerContrastPage(),
         );
       case ToolType.imageCompressor:
         return ToolItem(
-          name: 'imageCompressor',
+          name: '/imageCompressor',
           icon: Icons.photo,
-          title: l10n.imageCompressorTitle,
-          subtitle: l10n.imageCompressorSubtitle,
-          description: l10n.imageCompressorDescription,
+          title: LocaleKeys.imageCompressorTitle.tr(),
+          subtitle: LocaleKeys.imageCompressorSubtitle.tr(),
+          description: LocaleKeys.imageCompressorDescription.tr(),
           page: const ImageCompressorPage(),
         );
       case ToolType.imageConverter:
         return ToolItem(
-          name: 'imageConverter',
+          name: '/imageConverter',
           icon: Icons.photo_size_select_large,
-          title: l10n.imageConverterTitle,
-          subtitle: l10n.imageConverterSubtitle,
-          description: l10n.imageConverterDescription,
+          title: LocaleKeys.imageConverterTitle.tr(),
+          subtitle: LocaleKeys.imageConverterSubtitle.tr(),
+          description: LocaleKeys.imageConverterDescription.tr(),
           page: const ImageConverterPage(),
         );
     }

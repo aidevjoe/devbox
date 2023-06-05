@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../models/tool_type.dart';
 import '../ui/pages/favorite_page.dart';
 import '../ui/pages/home_page.dart';
 import '../ui/pages/setting_page.dart';
@@ -15,23 +16,71 @@ final GlobalKey<NavigatorState> _rootNavigatorKey =
 @riverpod
 GoRouter routerConfig(ref) {
   return GoRouter(
-      routes: $appRoutes,
+      routes: [
+        ShellRoute(
+          routes: [
+            GoRoute(
+                path: HomeRoute.path,
+                builder: (context, state) => const HomePage()),
+            GoRoute(
+                path: SettingRoute.path,
+                builder: (context, state) => const SettingPage()),
+            GoRoute(
+              path: FavoriteRoute.path,
+              builder: (context, state) => const FavoritePage(),
+            ),
+            ...ToolType.values
+                .map((e) => e.getToolItem)
+                .map((e) =>
+                    GoRoute(path: e.name, builder: (context, state) => e.page))
+                .toList()
+          ],
+          builder: (context, state, child) {
+            return AppPage(child);
+          },
+        )
+      ],
       debugLogDiagnostics: true,
       initialLocation: HomeRoute.path,
       navigatorKey: _rootNavigatorKey);
 }
 
-@TypedShellRoute<AppRoute>(routes: [
-  TypedGoRoute<HomeRoute>(path: HomeRoute.path),
-  TypedGoRoute<SettingRoute>(path: SettingRoute.path),
-  TypedGoRoute<FavoriteRoute>(path: FavoriteRoute.path),
-])
+// @TypedShellRoute<AppRoute>(routes: [
+//   TypedGoRoute<HomeRoute>(path: HomeRoute.path),
+//   TypedGoRoute<SettingRoute>(path: SettingRoute.path),
+//   TypedGoRoute<FavoriteRoute>(path: FavoriteRoute.path),
+// ])
+
+// @riverpod
+// GoRouter routerConfig(ref) {
+//   return GoRouter(
+//       routes: [
+//         GoRoute(
+//             path: HomeRoute.path,
+//             builder: (context, state) => const HomePage()),
+//         GoRoute(
+//             path: SettingRoute.path,
+//             builder: (context, state) => const SettingPage()),
+//         GoRoute(
+//             path: FavoriteRoute.path,
+//             builder: (context, state) => const FavoritePage()),
+//       ],
+//       debugLogDiagnostics: true,
+//       initialLocation: HomeRoute.path,
+//       navigatorKey: _rootNavigatorKey);
+// }
+
+// ...ToolType.values
+//     .map((e) => e.getToolItem(useContext()))
+//     .map((e) =>
+//         GoRoute(path: e.name, builder: (context, state) => e.page))
+//     .toList()
 class AppRoute extends ShellRouteData {
   const AppRoute();
 
   @override
   Widget builder(BuildContext context, GoRouterState state, Widget navigator) =>
-      AppPage(contentView: navigator);
+      AppPage(navigator);
 }
 
 class HomeRoute extends GoRouteData {

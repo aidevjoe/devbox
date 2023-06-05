@@ -1,8 +1,8 @@
-import 'package:devbox/utils/extensions/custom_extensions.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'generated/locale_keys.g.dart';
 import 'router/routers.dart';
 
 class Devbox extends ConsumerWidget {
@@ -13,13 +13,13 @@ class Devbox extends ConsumerWidget {
     final routes = ref.watch(routerConfigProvider);
 
     return MaterialApp.router(
-      onGenerateTitle: (context) => context.l10n.appName,
+      onGenerateTitle: (context) => LocaleKeys.appName.tr(),
       routeInformationProvider: routes.routeInformationProvider,
       routeInformationParser: routes.routeInformationParser,
       routerDelegate: routes.routerDelegate,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      locale: const Locale("zh"),
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
     );
   }
 }

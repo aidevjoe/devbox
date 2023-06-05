@@ -1,6 +1,8 @@
-import 'package:devbox/utils/extensions/custom_extensions.dart';
+import 'package:devbox/models/tool_type.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../generated/locale_keys.g.dart';
 import 'tool_category.dart';
 
 enum ToolCategoryType {
@@ -13,50 +15,60 @@ enum ToolCategoryType {
 }
 
 extension ToolCategoryTypeExtension on ToolCategoryType {
-  ToolCategoryItem getCategorys(BuildContext context) {
-    final l10n = context.l10n;
+  ToolCategoryItem get getCategorys {
     switch (this) {
       case ToolCategoryType.converters:
         return ToolCategoryItem(
           name: 'converters',
           icon: Icons.transform,
-          title: l10n.convertersTitle,
+          title: LocaleKeys.convertersTitle.tr(),
           items: [
-            // add ToolItem objects for converters
-          ],
+            ToolType.jsonYaml,
+            ToolType.timestamp,
+            ToolType.numberBase,
+            ToolType.cronParser,
+            ToolType.html
+          ].map((e) => e.getToolItem).toList(),
         );
       case ToolCategoryType.encoderDecoder:
         return ToolCategoryItem(
           name: 'encoderDecoder',
           icon: Icons.code,
-          title: l10n.encoderDecoderTitle,
+          title: LocaleKeys.encoderDecoderTitle.tr(),
           items: [
-            // add ToolItem objects for encoder/decoder
-          ],
+            ToolType.url,
+            ToolType.base64TextImage,
+            ToolType.gzip,
+            ToolType.jwtDecoder,
+          ].map((e) => e.getToolItem).toList(),
         );
       case ToolCategoryType.formatter:
         return ToolCategoryItem(
           name: 'formatter',
           icon: Icons.format_align_left,
-          title: l10n.formatterTitle,
+          title: LocaleKeys.formatterTitle.tr(),
           items: [
-            // add ToolItem objects for formatter
-          ],
+            ToolType.json,
+            ToolType.sql,
+            ToolType.xml,
+          ].map((e) => e.getToolItem).toList(),
         );
       case ToolCategoryType.generator:
         return ToolCategoryItem(
           name: 'generator',
           icon: Icons.build,
-          title: l10n.generatorTitle,
+          title: LocaleKeys.generatorTitle.tr(),
           items: [
-            // add ToolItem objects for generator
-          ],
+            ToolType.hash,
+            ToolType.uuid,
+            ToolType.loremIpsum,
+          ].map((e) => e.getToolItem).toList(),
         );
       case ToolCategoryType.text:
         return ToolCategoryItem(
           name: 'text',
           icon: Icons.text_fields,
-          title: l10n.textTitle,
+          title: LocaleKeys.textTitle.tr(),
           items: [
             // add ToolItem objects for text
           ],
@@ -65,7 +77,7 @@ extension ToolCategoryTypeExtension on ToolCategoryType {
         return ToolCategoryItem(
           name: 'graphic',
           icon: Icons.brush,
-          title: l10n.graphicToolsTitle,
+          title: LocaleKeys.graphicToolsTitle.tr(),
           items: [
             // add ToolItem objects for graphic
           ],
