@@ -25,6 +25,8 @@ dependencies:
   package_info_plus: ^4.0.2
   flutter_code_editor: ^0.2.9
   easy_localization: ^3.0.2
+  flutter_highlight: ^0.7.0
+  highlight: ^0.7.0
 
 dev_dependencies:
   flutter_test:
