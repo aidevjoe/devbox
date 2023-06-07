@@ -1,6 +1,7 @@
 import 'package:devbox/devbox.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,8 +15,16 @@ import 'generated/codegen_loader.g.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
 
+  await Window.initialize();
+  await Window.makeTitlebarTransparent();
+  await Window.enableFullSizeContentView();
+  await Window.setEffect(
+    effect: WindowEffect.transparent,
+    color: const Color(0xCC222222),
+  );
+
+  await EasyLocalization.ensureInitialized();
   final sharedPreferences = await SharedPreferences.getInstance();
   final packageInfo = await PackageInfo.fromPlatform();
 
@@ -27,11 +36,16 @@ Future<void> main() async {
         fallbackLocale: const Locale('en'),
         // saveLocale: false,
         useOnlyLangCode: true,
-        child: ProviderScope(overrides: [
-          sharedPreferencesProvider.overrideWithValue(sharedPreferences),
-          packageInfoProvider.overrideWithValue(packageInfo),
-        ], observers: const [
-          SateLogger()
-        ], child: const Devbox())),
+        child: ProviderScope(
+            overrides: [
+              sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+              packageInfoProvider.overrideWithValue(packageInfo),
+            ],
+            observers: const [
+              SateLogger()
+            ],
+            child: const TitlebarSafeArea(
+              child: Devbox(),
+            ))),
   );
 }

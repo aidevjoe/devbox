@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView(
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          mainAxisExtent: 250,
+          mainAxisExtent: 230,
           maxCrossAxisExtent: 200.0,
           childAspectRatio: 1.0 //宽高比为2
           ),
@@ -35,7 +35,7 @@ class ToolCardView extends StatelessWidget {
       child: Card(
         margin: const EdgeInsets.all(10),
         elevation: 0,
-        color: const Color(0xffEFEFEF),
+        color: const Color(0x773b3b3d),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child:
@@ -57,7 +57,10 @@ class ToolCardView extends StatelessWidget {
             ),
             Text(
               item.title,
-              style: const TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 14, color: Colors.white),
+            ),
+            const SizedBox(
+              height: 5,
             ),
             Text(
               item.subtitle,

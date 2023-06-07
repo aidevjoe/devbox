@@ -30,29 +30,47 @@ class _AppPageState extends ConsumerState<AppPage> {
                   InkWell(
                     onTap: () => GoRouter.of(context).go(HomeRoute.path),
                     child: ListTile(
-                      leading: const Icon(Icons.home),
-                      title: Text(LocaleKeys.all.tr()),
-                    ),
+                        iconColor: Colors.white,
+                        leading: const Icon(Icons.home),
+                        title: Text(LocaleKeys.all.tr(),
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ))),
                   ),
 
                   InkWell(
                     onTap: () => GoRouter.of(context).go(FavoriteRoute.path),
                     child: ListTile(
-                      leading: const Icon(Icons.favorite),
-                      title: Text(LocaleKeys.favorites.tr()),
+                      leading: const Icon(
+                        Icons.favorite,
+                        color: Colors.white,
+                      ),
+                      title: Text(LocaleKeys.favorites.tr(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                          )),
                     ),
                   ),
                   ...ToolCategoryType.values
                       .map((e) => e.getCategorys)
                       .map((e) => ExpansionTile(
-                            title: Text(e.title),
-                            leading: Icon(e.icon),
+                            title: Text(e.title,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                )),
+                            leading: Icon(
+                              e.icon,
+                              color: Colors.white,
+                            ),
                             children: e.items
                                 .map((e) => InkWell(
                                       onTap: () =>
                                           GoRouter.of(context).go(e.name),
                                       child: ListTile(
-                                        title: Text(e.title),
+                                        title: Text(e.title,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                            )),
                                       ),
                                     ))
                                 .toList(),
@@ -67,15 +85,22 @@ class _AppPageState extends ConsumerState<AppPage> {
               InkWell(
                 onTap: () => GoRouter.of(context).go(SettingRoute.path),
                 child: ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: Text(LocaleKeys.settings.tr()),
+                  leading: const Icon(
+                    Icons.settings,
+                    color: Colors.white,
+                  ),
+                  title: Text(LocaleKeys.settings.tr(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                      )),
                 ),
               )
             ],
           ),
         ),
-        const VerticalDivider(
+        VerticalDivider(
           width: 1,
+          color: Colors.grey[700],
         ),
         Expanded(
           child: Scaffold(

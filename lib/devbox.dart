@@ -13,6 +13,10 @@ class Devbox extends ConsumerWidget {
     final routes = ref.watch(routerConfigProvider);
 
     return MaterialApp.router(
+      theme: ThemeData(
+          useMaterial3: true,
+          scaffoldBackgroundColor: Colors.transparent,
+          primaryColor: Colors.white),
       onGenerateTitle: (context) => LocaleKeys.appName.tr(),
       routeInformationProvider: routes.routeInformationProvider,
       routeInformationParser: routes.routeInformationParser,
